@@ -1,0 +1,104 @@
+{
+  "adSoyad": "Ali Yılmaz",
+  "imageUrl": "https://placehold.co/600x400",
+  "boy": 188,
+  "kilo": 90,
+  "yas": 24,
+  "cinsiyet": "Erkek",
+  "bel": 79,
+  "kalca": 82,
+  "bmi": 25.5,
+  "bmi_yorum": "Fazla kilolu",
+  "bko": 0.96,
+  "bko_yorum": "Armut tipi (daha az riskli)",
+  "yag_orani": 15,
+  "analiz": "Görüntüde kaslı bir fiziğe sahipsiniz.  BMI değeriniz fazla kilolu kategorisinde olsa da, düşük bel/kalça oranınız ve kaslı yapınız sağlıklı bir vücut kompozisyonuna işaret ediyor.  Sağlıklı beslenme ve düzenli egzersiz ile ideal kilonuza ulaşabilir ve mevcut fiziğinizi daha da geliştirebilirsiniz.",
+  "egzersiz_programi": [
+    {
+      "gun": "Pazartesi",
+      "egzersiz": "**Kardiyo:** 30 dakika orta yoğunlukta koşu bandı veya hızlı yürüyüş.  \n**Ağırlık Çalışması:** Göğüs (Bench Press, Dumbbell Flyes), Sırt (Pull-ups veya Lat Pulldowns, Bent-over Rows), Omuz (Overhead Press, Lateral Raises), 3 set 10 tekrar. \n**Esneme:** 10 dakika genel esneme hareketleri (özellikle göğüs, sırt ve omuzlar)."
+    },
+    {
+      "gun": "Salı",
+      "egzersiz": "**Kardiyo:** 30 dakika bisiklet sürme veya yüzme. \n**Ağırlık Çalışması:** Bacaklar (Squats, Lunges, Leg Press), Karın (Crunch, Plank), 3 set 12 tekrar. \n**Esneme:** 10 dakika genel esneme hareketleri (özellikle bacaklar ve karın)."
+    },
+    {
+      "gun": "Çarşamba",
+      "egzersiz": "**Kardiyo:** 20 dakika yüksek yoğunluklu interval antrenmanı (HIIT) (örneğin, koşu/yürüyüş aralıkları). \n**Ağırlık Çalışması:**  Dinlenme günü veya hafif vücut ağırlığı egzersizleri (örneğin, şınav, mekik)."
+    },
+    {
+      "gun": "Perşembe",
+      "egzersiz": "**Kardiyo:** 30 dakika orta yoğunlukta koşu bandı veya hızlı yürüyüş. \n**Ağırlık Çalışması:** Göğüs (Incline Dumbbell Press, Cable Flyes), Sırt (Seated Rows, Face Pulls), Omuz (Dumbbell Shoulder Press, Front Raises), 3 set 10 tekrar. \n**Esneme:** 10 dakika genel esneme hareketleri (özellikle göğüs, sırt ve omuzlar)."
+    },
+    {
+      "gun": "Cuma",
+      "egzersiz": "**Kardiyo:** 30 dakika bisiklet sürme veya yüzme. \n**Ağırlık Çalışması:** Bacaklar (Deadlifts, Hamstring Curls, Calf Raises), Karın (Leg Raises, Russian Twists), 3 set 12 tekrar. \n**Esneme:** 10 dakika genel esneme hareketleri (özellikle bacaklar ve karın)."
+    },
+    {
+      "gun": "Cumartesi",
+      "egzersiz": "**Kardiyo:**  45 dakika orta yoğunlukta tercih edilen bir aktivite (örneğin, yürüyüş, bisiklet, yüzme). \n**Esneme:** 15 dakika yoga veya pilates."
+    },
+    {
+      "gun": "Pazar",
+      "egzersiz": "Dinlenme günü veya hafif aktivite (örneğin, yürüyüş, esneme)."
+    }
+  ],
+  "diyet_listesi": [
+    {
+      "gun": "Pazartesi",
+      "kahvalti": "1 kase yulaf ezmesi (yarım su bardağı), 1/4 su bardağı çilek, 1/4 su bardağı badem sütü, bir avuç badem",
+      "ogle": "150 gr tavuk göğsü salatası (marul, domates, salatalık, zeytinyağı ve limon sosu), 1 dilim tam buğday ekmeği",
+      "aksam": "150 gr fırında somon, 1/2 su bardağı brokoli, 1/2 su bardağı haşlanmış yeşil fasulye",
+      "ara_ogun": "1 adet elma ve bir avuç fındık",
+      "toplam_kalori": 1850.0
+    },
+    {
+      "gun": "Salı",
+      "kahvalti": "2 yumurta (haşlanmış veya omlet), 1 dilim tam buğday ekmeği, 1/4 avokado",
+      "ogle": "1 kase mercimek çorbası, 1 dilim tam buğday ekmeği, 50 gr peynir",
+      "aksam": "150 gr hindi eti, 1/2 su bardağı karnabahar, 1/2 su bardağı havuç",
+      "ara_ogun": "1 kase yoğurt (az yağlı) ve 1/4 su bardağı yaban mersini",
+      "toplam_kalori": 1700.0
+    },
+    {
+      "gun": "Çarşamba",
+      "kahvalti": "1 kase yulaf ezmesi (yarım su bardağı), 1/4 su bardağı kuru üzüm, 1/4 su bardağı süt (az yağlı)",
+      "ogle": "150 gr ton balığı salatası (marul, domates, salatalık, zeytinyağı ve limon sosu), 1 dilim tam buğday ekmeği",
+      "aksam": "150 gr tavuk göğsü, 1/2 su bardağı brokoli, 1/2 su bardağı bezelye",
+      "ara_ogun": "1 muz ve bir avuç ceviz",
+      "toplam_kalori": 1900.0
+    },
+    {
+      "gun": "Perşembe",
+      "kahvalti": "2 yumurta (omlet), 1 dilim tam buğday ekmeği, 1/4 avokado",
+      "ogle": "1 kase mercimek çorbası, 1 dilim tam buğday ekmeği, 50 gr peynir",
+      "aksam": "150 gr dana eti, 1/2 su bardağı ıspanak, 1/2 su bardağı haşlanmış patates",
+      "ara_ogun": "1 kase yoğurt (az yağlı) ve 1/4 su bardağı çilek",
+      "toplam_kalori": 1800.0
+    },
+    {
+      "gun": "Cuma",
+      "kahvalti": "1 kase yulaf ezmesi (yarım su bardağı), 1/4 su bardağı kuru kayısı, 1/4 su bardağı süt (az yağlı)",
+      "ogle": "150 gr tavuk göğsü salatası (marul, domates, salatalık, zeytinyağı ve limon sosu), 1 dilim tam buğday ekmeği",
+      "aksam": "150 gr fırında somon, 1/2 su bardağı brokoli, 1/2 su bardağı yeşil fasulye",
+      "ara_ogun": "1 elma ve bir avuç badem",
+      "toplam_kalori": 1750.0
+    },
+    {
+      "gun": "Cumartesi",
+      "kahvalti": "2 yumurta (haşlanmış), 1 dilim tam buğday ekmeği, 1/4 avokado",
+      "ogle": "150 gr hindi eti salatası (marul, domates, salatalık, zeytinyağı ve limon sosu), 1 dilim tam buğday ekmeği",
+      "aksam": "150 gr tavuk göğsü, 1/2 su bardağı karnabahar, 1/2 su bardağı havuç",
+      "ara_ogun": "1 kase yoğurt (az yağlı) ve 1/4 su bardağı yaban mersini",
+      "toplam_kalori": 1650.0
+    },
+    {
+      "gun": "Pazar",
+      "kahvalti": "1 kase yulaf ezmesi (yarım su bardağı), 1/4 su bardağı çilek, 1/4 su bardağı badem sütü, bir avuç badem",
+      "ogle": "150 gr ton balığı salatası (marul, domates, salatalık, zeytinyağı ve limon sosu), 1 dilim tam buğday ekmeği",
+      "aksam": "150 gr fırında somon, 1/2 su bardağı brokoli, 1/2 su bardağı yeşil fasulye",
+      "ara_ogun": "1 muz ve bir avuç ceviz",
+      "toplam_kalori": 1950.0
+    }
+  ]
+}
