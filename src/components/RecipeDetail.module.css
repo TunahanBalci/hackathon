@@ -1,0 +1,24 @@
+.recipe-detail {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 400px;
+  width: 100%;
+  flex: 1;
+}
+
+.recipe-detail img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.recipe-detail p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}

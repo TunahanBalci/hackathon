@@ -1,0 +1,77 @@
+:root {
+  --low-color: #8fd694;
+  --moderate-color: #f2b463;
+  --high-color: #e57373;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 5rem auto;
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  height: 2rem;
+  border-radius: 1rem;
+  background: #eee;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.segment.low {
+  background: var(--low-color);
+}
+.segment.moderate {
+  background: var(--moderate-color);
+}
+.segment.high {
+  background: var(--high-color);
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -110%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.bubble {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.4rem;
+  font-size: 0.75rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-top: -0.2rem;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legendColor {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+}
+
+.legendText {
+  font-size: 0.9rem;
+  color: #000000c0;
+}
