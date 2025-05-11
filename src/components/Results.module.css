@@ -1,3 +1,55 @@
+@page {
+  size: A4 portrait;
+  margin: 1cm;
+}
+
+@media print {
+  /* Hide everything but the results panel */
+  body * {
+    visibility: hidden !important;
+  }
+  .results-panel,
+  .results-panel * {
+    visibility: visible !important;
+  }
+
+  /* Expand panel to full printable width */
+  .results-panel {
+    position: static !important;
+    top: auto;
+    left: auto;
+    width: auto !important;
+    margin: 0;
+    padding: 0;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  /* Hide controls */
+  .pdf-button,
+  .close-p {
+    display: none !important;
+  }
+
+  /* Your new section wrapper */
+  .printSection {
+    /* keep it all together on one page if it fits */
+    page-break-inside: avoid;
+    /* force break after each section */
+    page-break-after: always;
+  }
+
+  /* Ensure last section doesn’t add blank page */
+  .printSection:last-child {
+    page-break-after: auto;
+  }
+}
+
+/* start new page before weekly plan if it’s long */
+.weekly-plan {
+  page-break-before: always;
+}
+
 .results-panel {
   overflow-y: scroll;
   height: 100vh;
@@ -11,6 +63,14 @@
   overflow-y: auto;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.08),
     0 8px 16px rgba(0, 0, 0, 0.06);
+}
+.pdf-button {
+  background-color: #117d5f;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
 }
 .close-p {
   position: absolute;
