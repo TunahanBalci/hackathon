@@ -63,13 +63,6 @@ USER_DATA_FOLDER=user_data
 
 ```
 
-### Frontend
-```bash
-cd frontend
-npm install
-npm start
-```
-
 ---
 
 ## 📌 API Endpointleri
@@ -88,7 +81,21 @@ npm start
 
 ## 📌 Çalıştırmak İçin
 
-![Çalıştırmak için](94d595d8-6847-40a4-979a-c36e20346362.png)
+### Back-end
+Proje dizinine gelerek:
+
+```bash
+python app.py
+```
+
+### Front-end
+Proje Dizinine Gelerek:
+
+```bash
+cd frontend
+npm install
+npm start
+```
 
 ---
 
