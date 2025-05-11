@@ -1,0 +1,17 @@
+{
+    "user_id": "user_1746967038474",
+    "age": 1,
+    "gender": "Erkek",
+    "measurements": {
+        "height_cm": 1,
+        "weight_kg": 1,
+        "waist_cm": 1,
+        "hip_cm": 1
+    },
+    "calculated_metrics": {
+        "bmi": 10000.0,
+        "whr": 1.0
+    },
+    "progress_history": [],
+    "body_fat_estimates": {}
+}
