@@ -1,6 +1,6 @@
-# 💪 Fitalyz – Kişisel Vücut Analizi ve Diyet Asistanı
+# 💪 Fitalyze – Kişisel Vücut Analizi ve Diyet Asistanı
 
-*A Flask-based backend for user profile management, body-composition analysis via Google’s Gemini AI, diet-plan generation, and Google Calendar integration.*
+*Kullanıcı profili yönetimi, Google’ın Gemini AI’si ile vücut kompozisyonu analizi, diyet planı oluşturma ve Google Takvim entegrasyonu sunan Flask tabanlı bir backend.*
 
 ---
 
