@@ -1,0 +1,36 @@
+.analysis-box-container {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+
+  padding: 1rem;
+}
+
+.analysis-box {
+  width: 100%;
+  height: 150px;
+  background-color: #1f2937;
+  color: rgba(255, 255, 255, 0.829);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.overall-analysis-box {
+  width: 100%;
+  height: 150px;
+  background-color: #1f2937;
+  color: rgba(255, 255, 255, 0.829);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.analysis-box h3,
+.overall-analysis-box h3 {
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  margin-bottom: 8px;
+}

@@ -1,0 +1,74 @@
+.weeklyContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.dayCard {
+  background: #1f2937;      /* dark slate */
+  color: #f9fafb;           /* light text */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.dayTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 0.25rem;
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section {
+  background: #111827;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+}
+
+.section h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #10b981; /* emerald */
+}
+
+.exerciseText {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.dietTable {
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+}
+
+.dietTable th,
+.dietTable td {
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+}
+
+.dietTable th {
+  width: 35%;
+  color: #6b7280; /* gray */
+}
+
+.dietTable tr:not(.caloriesRow) {
+  border-bottom: 1px solid #374151;
+}
+
+.caloriesRow th {
+  font-weight: bold;
+  color: #f59e0b; /* amber */
+}
+
+.caloriesRow td {
+  font-weight: bold;
+}

@@ -1,0 +1,193 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1dcd9f, #117d5f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start; /* top-align children */
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  max-width: 900px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.form {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  column-gap: 16px;
+  row-gap: 12px;
+  padding: 32px;
+}
+
+.heading {
+  grid-column: 1 / -1;
+  font-size: 24px;
+  color: #117d5f;
+  margin-bottom: 8px;
+}
+
+.form label {
+  align-self: center;
+  font-weight: 500;
+  color: #333;
+}
+
+.form input[type="text"],
+.form input[type="number"] {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f5f5f5;
+  width: 100%;
+  font-size: 14px;
+  transition: border 0.2s;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #1dcd9f;
+}
+
+.genderGroup {
+  grid-column: 2;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.uploadRow {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.uploadBox {
+  width: 150px;
+  height: 150px;
+  background: #1dcd9f;
+  border: 2px dashed #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.uploadBox:hover {
+  background: #1ab88c;
+}
+
+.uploadContent {
+  text-align: center;
+  color: #fff;
+}
+
+.clipIcon {
+  font-size: 24px;
+}
+
+.uploadHint {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.previewBox {
+  position: relative;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.previewImage {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.previewOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #333;
+}
+
+.submitButton {
+  grid-column: 1 / -1;
+  padding: 12px 20px;
+  background: #117d5f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submitButton:hover {
+  background: #0f6c4a;
+}
+
+.visualBox {
+  flex-shrink: 0;
+  width: 45%;
+  overflow: hidden;
+  position: relative;
+}
+
+.visualBox img {
+  height: 100%; /* matches form’s dynamic height */
+  width: auto;
+  object-fit: cover;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.blurBox {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 104, 74, 0.793);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.visualContent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  color: #fff;
+  font-size: 24px;
+}
