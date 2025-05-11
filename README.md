@@ -74,7 +74,15 @@ npm start
 
 ## 📌 API Endpointleri
 
-![API Endpointleri](6f10c923-f94d-4537-974a-37ff0e0584dd.png)
+| Yöntem | URL                                           | Açıklama                                    |
+|--------|-----------------------------------------------|---------------------------------------------|
+| POST   | `/profile/<user_id>`                          | Kullanıcı profilini oluşturur/günceller    |
+| POST   | `/analyze-photo/<user_id>`                    | Fotoğrafla analiz ve plan oluşturur         |
+| GET    | `/profile/<user_id>`                          | Kullanıcı profili getirir                   |
+| POST   | `/generate-diet-plan/<user_id>`               | Gemini ile diyet planı üretir               |
+| POST   | `/profile/<user_id>/schedule-checkup`         | Haftalık kontrol için takvim oluşturur      |
+| POST   | `/track-progress/<user_id>`                   | Ağırlık ve ölçüm geçmişi takibi yapar       |
+
 
 ---
 
