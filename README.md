@@ -47,14 +47,20 @@ pip install -r requirements.txt
 
 `.env` dosyasına ekleyin:
 ```
-FLASK_SECRET_KEY=your_flask_secret
-GEMINI_API_KEY=your_gemini_api_key
-GOOGLE_CLIENT_CONFIG_JSON='{"web":{…}}'
-GOOGLE_REDIRECT_URI=http://localhost:5000/oauth2callback
-GOOGLE_CALENDAR_SCOPES=https://www.googleapis.com/auth/calendar
-USER_DATA_FOLDER=user_data
-FLASK_RUN_PORT=5000
+FLASK_APP=app.py
 FLASK_ENV=development
+FLASK_RUN_PORT=5000
+FLASK_SECRET_KEY=FLASK_SECRET_ANAHTARINIZ
+
+GEMINI_API_KEY=GEMINI_API_ANAHTARINIZ
+
+GOOGLE_CLIENT_CONFIG_JSON='OAUTH_SECRET_DOSYASI_TAM_KONUMU(PATH)'
+GOOGLE_CALENDAR_SCOPES='https://www.googleapis.com/auth/calendar'
+GOOGLE_REDIRECT_URI='http://localhost:5000/oauth2callback'
+
+USER_DATA_FOLDER=user_data
+
+
 ```
 
 ### Frontend
