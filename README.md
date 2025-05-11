@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/359c4c3e-3835-4c46-a94f-1224e0532660
 # 💪 Fitalyze – Kişisel Vücut Analizi ve Diyet Asistanı
 
 *Kullanıcı profili yönetimi, Google’ın Gemini AI’si ile vücut kompozisyonu analizi, diyet planı oluşturma ve Google Takvim entegrasyonu sunan Flask tabanlı bir backend.*
@@ -121,3 +123,17 @@ Aşağıdaki Python modüllerinin sorumlulukları:
   - Google OAuth2 kimlik doğrulama akışını ve Calendar API etkileşimlerini yönetir.  
 
 ---
+## Demo Video: 
+
+https://github.com/user-attachments/assets/88d309ad-2a55-431a-8ebe-2a85d4e5f001
+
+
+
+https://github.com/user-attachments/assets/58a9afd0-fa40-47d4-88fa-ea79bc693d2a
+
+
+
+https://github.com/user-attachments/assets/c68642ff-3e85-4839-99ca-1feabf00f591
+
+
+  
