@@ -1,0 +1,17 @@
+{
+    "user_id": "user_1746944143812",
+    "age": 123,
+    "gender": "",
+    "measurements": {
+        "height_cm": 123,
+        "weight_kg": 123,
+        "waist_cm": 12123,
+        "hip_cm": 12312
+    },
+    "calculated_metrics": {
+        "bmi": 81.3,
+        "whr": 0.98
+    },
+    "progress_history": [],
+    "body_fat_estimates": {}
+}

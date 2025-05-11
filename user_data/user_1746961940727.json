@@ -1,0 +1,115 @@
+{
+    "user_id": "user_1746961940727",
+    "age": 31,
+    "gender": "Erkek",
+    "measurements": {
+        "height_cm": 175,
+        "weight_kg": 88,
+        "waist_cm": 88,
+        "hip_cm": 102
+    },
+    "calculated_metrics": {
+        "bmi": 28.73,
+        "whr": 0.86
+    },
+    "progress_history": [],
+    "body_fat_estimates": {
+        "from_photo": {
+            "value": "%18",
+            "timestamp": "2025-05-11T11:12:37.535268Z",
+            "analysis": "V\u00fccut kitle indeksiniz (BMI) fazla kilolu kategorisinde yer almaktad\u0131r. Ancak bel/kal\u00e7a oran\u0131n\u0131z, g\u00f6receli olarak daha d\u00fc\u015f\u00fck risk ta\u015f\u0131yan bir v\u00fccut yap\u0131s\u0131n\u0131 g\u00f6stermektedir.  Sa\u011fl\u0131kl\u0131 bir ya\u015fam tarz\u0131 i\u00e7in dengeli beslenme ve d\u00fczenli egzersiz program\u0131na ba\u015flaman\u0131z \u00f6nerilir.  K\u00fc\u00e7\u00fck ad\u0131mlarla ba\u015flayarak, hedeflerinize ula\u015fabilece\u011finizi unutmay\u0131n!",
+            "bmi": 28.7,
+            "bmi_comment": "Fazla kilolu",
+            "bko": 0.86,
+            "bko_comment": "Armut tipi (daha az riskli)",
+            "exercise_program": [
+                {
+                    "gun": "Pazartesi",
+                    "egzersiz": "30 dakika h\u0131zl\u0131 y\u00fcr\u00fcy\u00fc\u015f (kardiyo) + 30 dakika g\u00f6\u011f\u00fcs, omuz ve triceps a\u011f\u0131rl\u0131k \u00e7al\u0131\u015fmas\u0131 (3 set x 10-12 tekrar) + 10 dakika esneme"
+                },
+                {
+                    "gun": "Sal\u0131",
+                    "egzersiz": "30 dakika bisiklet s\u00fcrme (kardiyo) + 30 dakika s\u0131rt, biceps ve \u00f6n kol a\u011f\u0131rl\u0131k \u00e7al\u0131\u015fmas\u0131 (3 set x 10-12 tekrar) + 10 dakika esneme"
+                },
+                {
+                    "gun": "\u00c7ar\u015famba",
+                    "egzersiz": "Dinlenme veya hafif aktivite (\u00f6rne\u011fin, 30 dakika y\u00fcr\u00fcy\u00fc\u015f)"
+                },
+                {
+                    "gun": "Per\u015fembe",
+                    "egzersiz": "30 dakika y\u00fczme (kardiyo) + 30 dakika bacak ve omuz a\u011f\u0131rl\u0131k \u00e7al\u0131\u015fmas\u0131 (3 set x 10-12 tekrar) + 10 dakika esneme"
+                },
+                {
+                    "gun": "Cuma",
+                    "egzersiz": "30 dakika ko\u015fu band\u0131 (kardiyo) + 30 dakika g\u00f6\u011f\u00fcs, s\u0131rt ve omuz a\u011f\u0131rl\u0131k \u00e7al\u0131\u015fmas\u0131 (3 set x 10-12 tekrar) + 10 dakika esneme"
+                },
+                {
+                    "gun": "Cumartesi",
+                    "egzersiz": "45 dakika orta \u015fiddette tempolu y\u00fcr\u00fcy\u00fc\u015f veya bisiklet (kardiyo) + 15 dakika t\u00fcm v\u00fccut esneme"
+                },
+                {
+                    "gun": "Pazar",
+                    "egzersiz": "Dinlenme veya hafif aktivite (\u00f6rne\u011fin, yoga veya pilates)"
+                }
+            ],
+            "diet_plan": [
+                {
+                    "gun": "Pazartesi",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 kuru yemi\u015f (f\u0131nd\u0131k, badem, ceviz), 1/2 su barda\u011f\u0131 \u00e7ilek",
+                    "ogle": "150 gr tavuk g\u00f6\u011fs\u00fc salatas\u0131 (marul, domates, salatal\u0131k, zeytinya\u011f\u0131 ve limon suyu sosu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr f\u0131r\u0131nda somon, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ha\u015flanm\u0131\u015f ye\u015fil fasulye",
+                    "ara_ogun": "1 adet elma ve bir avu\u00e7 badem",
+                    "toplam_kalori": 1800.0
+                },
+                {
+                    "gun": "Sal\u0131",
+                    "kahvalti": "2 yumurta (ha\u015flanm\u0131\u015f veya omlet), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado",
+                    "ogle": "1 su barda\u011f\u0131 mercimek \u00e7orbas\u0131, 1 dilim tam bu\u011fday ekme\u011fi, 100 gr yo\u011furt",
+                    "aksam": "150 gr hindi eti, 1/2 su barda\u011f\u0131 karnabahar, 1/2 su barda\u011f\u0131 havu\u00e7",
+                    "ara_ogun": "1 kase yo\u011furt ve 1/4 su barda\u011f\u0131 yulaf ezmesi",
+                    "toplam_kalori": 1750.0
+                },
+                {
+                    "gun": "\u00c7ar\u015famba",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 kuru yemi\u015f, 1/2 su barda\u011f\u0131 muz",
+                    "ogle": "100 gr ton bal\u0131\u011f\u0131 salatas\u0131 (marul, domates, salatal\u0131k, zeytinya\u011f\u0131 ve limon suyu sosu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr tavuk g\u00f6\u011fs\u00fc, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ye\u015fil fasulye",
+                    "ara_ogun": "1 adet portakal ve bir avu\u00e7 f\u0131nd\u0131k",
+                    "toplam_kalori": 1900.0
+                },
+                {
+                    "gun": "Per\u015fembe",
+                    "kahvalti": "2 yumurta (omlet), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado",
+                    "ogle": "1 su barda\u011f\u0131 mercimek \u00e7orbas\u0131, 1 dilim tam bu\u011fday ekme\u011fi, 100 gr yo\u011furt",
+                    "aksam": "150 gr dana eti, 1/2 su barda\u011f\u0131 karnabahar, 1/2 su barda\u011f\u0131 havu\u00e7",
+                    "ara_ogun": "1 kase yo\u011furt ve 1/4 su barda\u011f\u0131 yulaf ezmesi",
+                    "toplam_kalori": 1850.0
+                },
+                {
+                    "gun": "Cuma",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 kuru yemi\u015f, 1/2 su barda\u011f\u0131 \u00e7ilek",
+                    "ogle": "150 gr tavuk g\u00f6\u011fs\u00fc salatas\u0131 (marul, domates, salatal\u0131k, zeytinya\u011f\u0131 ve limon suyu sosu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr f\u0131r\u0131nda somon, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ha\u015flanm\u0131\u015f ye\u015fil fasulye",
+                    "ara_ogun": "1 adet elma ve bir avu\u00e7 badem",
+                    "toplam_kalori": 1700.0
+                },
+                {
+                    "gun": "Cumartesi",
+                    "kahvalti": "2 yumurta (ha\u015flanm\u0131\u015f veya omlet), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado",
+                    "ogle": "100 gr ton bal\u0131\u011f\u0131 salatas\u0131 (marul, domates, salatal\u0131k, zeytinya\u011f\u0131 ve limon suyu sosu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr hindi eti, 1/2 su barda\u011f\u0131 karnabahar, 1/2 su barda\u011f\u0131 havu\u00e7",
+                    "ara_ogun": "1 kase yo\u011furt ve 1/4 su barda\u011f\u0131 yulaf ezmesi",
+                    "toplam_kalori": 1950.0
+                },
+                {
+                    "gun": "Pazar",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 kuru yemi\u015f, 1/2 su barda\u011f\u0131 muz",
+                    "ogle": "150 gr tavuk g\u00f6\u011fs\u00fc salatas\u0131 (marul, domates, salatal\u0131k, zeytinya\u011f\u0131 ve limon suyu sosu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr f\u0131r\u0131nda somon, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ye\u015fil fasulye",
+                    "ara_ogun": "1 adet portakal ve bir avu\u00e7 f\u0131nd\u0131k",
+                    "toplam_kalori": 2000.0
+                }
+            ]
+        }
+    }
+}

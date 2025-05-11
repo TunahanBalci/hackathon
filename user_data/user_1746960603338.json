@@ -1,0 +1,115 @@
+{
+    "user_id": "user_1746960603338",
+    "age": 1,
+    "gender": "Erkek",
+    "measurements": {
+        "height_cm": 11,
+        "weight_kg": 1,
+        "waist_cm": 1,
+        "hip_cm": 1
+    },
+    "calculated_metrics": {
+        "bmi": 82.64,
+        "whr": 1.0
+    },
+    "progress_history": [],
+    "body_fat_estimates": {
+        "from_photo": {
+            "value": "%10",
+            "timestamp": "2025-05-11T10:50:21.130939Z",
+            "analysis": "Sa\u011fl\u0131\u011f\u0131n\u0131z i\u00e7in d\u00fczenli egzersiz ve dengeli beslenme \u00e7ok \u00f6nemlidir.  V\u00fccut kompozisyonunuzda iyile\u015ftirmeler yapabilirsiniz.  Unutmay\u0131n, k\u00fc\u00e7\u00fck ad\u0131mlar bile b\u00fcy\u00fck farklar yarat\u0131r, bu yolda size destek olmak i\u00e7in buraday\u0131z!",
+            "bmi": 82.6,
+            "bmi_comment": "Obez",
+            "bko": 1.0,
+            "bko_comment": "Armut tipi (daha az riskli)",
+            "exercise_program": [
+                {
+                    "gun": "Pazartesi",
+                    "egzersiz": "5 dakika oyun park\u0131nda oyun (sallanma, kayd\u0131rak vb.), 5 dakika anne/babayla birlikte basit esneme hareketleri (kollar\u0131 yukar\u0131 kald\u0131rma, bacaklar\u0131 uzatma)"
+                },
+                {
+                    "gun": "Sal\u0131",
+                    "egzersiz": "10 dakika y\u00fcr\u00fcme (anne/baba deste\u011fiyle), 5 dakika yerde yuvarlanma ve emekleme te\u015fviki"
+                },
+                {
+                    "gun": "\u00c7ar\u015famba",
+                    "egzersiz": "5 dakika oyun park\u0131nda oyun, 5 dakika anne/babayla birlikte basit esneme hareketleri (ayak parmaklar\u0131na dokunma, bacaklar\u0131 yana a\u00e7ma)"
+                },
+                {
+                    "gun": "Per\u015fembe",
+                    "egzersiz": "10 dakika y\u00fcr\u00fcme (anne/baba deste\u011fiyle), 5 dakika topla oynama (topu yuvarlama, yakalama)"
+                },
+                {
+                    "gun": "Cuma",
+                    "egzersiz": "5 dakika oyun park\u0131nda oyun, 5 dakika anne/babayla birlikte basit esneme hareketleri (kollar\u0131 yanlara a\u00e7ma, bacaklar\u0131 b\u00fckme)"
+                },
+                {
+                    "gun": "Cumartesi",
+                    "egzersiz": "15 dakika oyun alan\u0131nda serbest oyun (anne/baba g\u00f6zetimi alt\u0131nda), 5 dakika yerde kar\u0131n \u00fcst\u00fc ve s\u0131rt \u00fcst\u00fc yatma"
+                },
+                {
+                    "gun": "Pazar",
+                    "egzersiz": "Dinlenme veya hafif aktiviteler (\u00f6rne\u011fin, aileyle birlikte k\u0131sa bir y\u00fcr\u00fcy\u00fc\u015f)"
+                }
+            ],
+            "diet_plan": [
+                {
+                    "gun": "Pazartesi",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 \u00e7ilek, 1/4 su barda\u011f\u0131 yaban mersini, bir avu\u00e7 badem",
+                    "ogle": "150 gr tavuk salatas\u0131 (\u0131zgara tavuk, marul, domates, salatal\u0131k, az ya\u011fl\u0131 yo\u011furt soslu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr f\u0131r\u0131nda somon, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ha\u015flanm\u0131\u015f ye\u015fil fasulye",
+                    "ara_ogun": "1 elma ve 1 avu\u00e7 badem",
+                    "toplam_kalori": 1800.0
+                },
+                {
+                    "gun": "Sal\u0131",
+                    "kahvalti": "2 yumurta (ha\u015flanm\u0131\u015f veya omlet), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado",
+                    "ogle": "1 kase mercimek \u00e7orbas\u0131, 1 dilim tam bu\u011fday ekme\u011fi, 1 k\u00fc\u00e7\u00fck salata (marul, domates, salatal\u0131k)",
+                    "aksam": "150 gr hindi pirzola, 1/2 su barda\u011f\u0131 karnabahar, 1/2 su barda\u011f\u0131 ha\u015flanm\u0131\u015f ye\u015fil fasulye",
+                    "ara_ogun": "Yunan yo\u011furdu (150 gr) ve 1/4 su barda\u011f\u0131 \u00e7ilek",
+                    "toplam_kalori": 1750.0
+                },
+                {
+                    "gun": "\u00c7ar\u015famba",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 kuru \u00fcz\u00fcm, 1/4 su barda\u011f\u0131 ceviz",
+                    "ogle": "150 gr ton bal\u0131\u011f\u0131 salatas\u0131 (ton bal\u0131\u011f\u0131, marul, domates, salatal\u0131k, az ya\u011fl\u0131 mayonez soslu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr \u0131zgara tavuk g\u00f6\u011fs\u00fc, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 havu\u00e7",
+                    "ara_ogun": "1 muz ve 1 avu\u00e7 f\u0131nd\u0131k",
+                    "toplam_kalori": 1900.0
+                },
+                {
+                    "gun": "Per\u015fembe",
+                    "kahvalti": "2 yumurta (omlet), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado, 1 dilim domates",
+                    "ogle": "1 kase sebze \u00e7orbas\u0131, 1 dilim tam bu\u011fday ekme\u011fi, 1 k\u00fc\u00e7\u00fck salata (marul, domates, salatal\u0131k)",
+                    "aksam": "150 gr f\u0131r\u0131nda k\u00f6fte (az ya\u011fl\u0131), 1/2 su barda\u011f\u0131 patates p\u00fcresi (az ya\u011fl\u0131), 1/2 su barda\u011f\u0131 ye\u015fil fasulye",
+                    "ara_ogun": "Yunan yo\u011furdu (150 gr) ve 1/4 su barda\u011f\u0131 ahududu",
+                    "toplam_kalori": 1850.0
+                },
+                {
+                    "gun": "Cuma",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 kuru kay\u0131s\u0131, 1/4 su barda\u011f\u0131 ceviz",
+                    "ogle": "150 gr tavuk salatas\u0131 (\u0131zgara tavuk, marul, domates, salatal\u0131k, az ya\u011fl\u0131 yo\u011furt soslu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr \u0131zgara bal\u0131k, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ha\u015flanm\u0131\u015f karnabahar",
+                    "ara_ogun": "1 elma ve 1 avu\u00e7 f\u0131nd\u0131k",
+                    "toplam_kalori": 1700.0
+                },
+                {
+                    "gun": "Cumartesi",
+                    "kahvalti": "Pancake (tam bu\u011fday unu ile yap\u0131lm\u0131\u015f, az miktarda bal ile), 1/4 su barda\u011f\u0131 \u00e7ilek",
+                    "ogle": "150 gr mercimekli k\u00f6fte, 1/2 su barda\u011f\u0131 bulgur pilav\u0131, 1 k\u00fc\u00e7\u00fck salata (marul, domates, salatal\u0131k)",
+                    "aksam": "150 gr \u0131zgara tavuk g\u00f6\u011fs\u00fc, 1/2 su barda\u011f\u0131 patates p\u00fcresi (az ya\u011fl\u0131), 1/2 su barda\u011f\u0131 brokoli",
+                    "ara_ogun": "Yunan yo\u011furdu (150 gr) ve 1/4 su barda\u011f\u0131 yaban mersini",
+                    "toplam_kalori": 1950.0
+                },
+                {
+                    "gun": "Pazar",
+                    "kahvalti": "2 yumurta (ha\u015flanm\u0131\u015f), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado",
+                    "ogle": "1 kase sebze \u00e7orbas\u0131, 1 dilim tam bu\u011fday ekme\u011fi, 1 k\u00fc\u00e7\u00fck salata (marul, domates, salatal\u0131k)",
+                    "aksam": "150 gr f\u0131r\u0131nda somon, 1/2 su barda\u011f\u0131 ha\u015flanm\u0131\u015f karnabahar, 1/2 su barda\u011f\u0131 brokoli",
+                    "ara_ogun": "1 muz ve 1 avu\u00e7 badem",
+                    "toplam_kalori": 1800.0
+                }
+            ]
+        }
+    }
+}

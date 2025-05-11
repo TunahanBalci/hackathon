@@ -1,0 +1,60 @@
+{
+    "user_id": "test_user_123",
+    "age": 30,
+    "gender": "male",
+    "measurements": {
+        "height_cm": 180,
+        "weight_kg": 79.5,
+        "waist_cm": 89,
+        "hip_cm": 94,
+        "neck_cm": 40
+    },
+    "calculated_metrics": {
+        "bmi": 24.54,
+        "whr": 0.95,
+        "bfp_from_measurements_navy": 24.17
+    },
+    "body_fat_estimates": {
+        "from_measurements": {
+            "value": 24.17,
+            "timestamp": "2025-05-10T20:02:47.667880Z",
+            "formula_used": "Navy Method"
+        },
+        "from_image": {
+            "value": 21.3,
+            "timestamp": "2025-05-10T20:02:43.524708Z",
+            "confidence_score": 0.78,
+            "feedback": "Mock analysis: Based on general visual assessment. For more accuracy, provide user metrics."
+        }
+    },
+    "lifestyle": {
+        "activity_level": "moderate",
+        "goals": "lose_weight",
+        "dietary_preferences": [
+            "vegetarian"
+        ]
+    },
+    "progress_history": [
+        {
+            "timestamp": "2025-05-10T20:02:47.667880Z",
+            "weight_kg": 79.5,
+            "measurements": {
+                "height_cm": 180,
+                "weight_kg": 79.5,
+                "waist_cm": 89,
+                "hip_cm": 94,
+                "neck_cm": 40
+            },
+            "notes": "Feeling good, maintaining progress"
+        }
+    ],
+    "current_diet_plan": {
+        "summary": "Mock plan considering body comp. info: Plan based on image-estimated body fat: 21.3%.",
+        "monday": {
+            "breakfast": "...",
+            "lunch": "...",
+            "dinner": "..."
+        },
+        "notes_from_gemini": "Plan based on image-estimated body fat: 21.3%.\nPlan based on image-estimated body fat: 21.3%."
+    }
+}

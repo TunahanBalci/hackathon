@@ -1,0 +1,115 @@
+{
+    "user_id": "user_1746943856752",
+    "age": 30,
+    "gender": "Kad\u0131n",
+    "measurements": {
+        "height_cm": 160,
+        "weight_kg": 110,
+        "waist_cm": 120,
+        "hip_cm": 120
+    },
+    "calculated_metrics": {
+        "bmi": 42.97,
+        "whr": 1.0
+    },
+    "progress_history": [],
+    "body_fat_estimates": {
+        "from_photo": {
+            "value": "%30",
+            "timestamp": "2025-05-11T06:11:17.485073Z",
+            "analysis": "V\u00fccut kitle indeksiniz ve bel/kal\u00e7a oran\u0131n\u0131z, sa\u011fl\u0131\u011f\u0131n\u0131z i\u00e7in risk olu\u015fturan obeziteyi g\u00f6steriyor.  Sa\u011fl\u0131kl\u0131 bir kiloya ula\u015fmak i\u00e7in dengeli beslenme ve d\u00fczenli egzersiz \u00e7ok \u00f6nemli.  Unutmay\u0131n ki, k\u00fc\u00e7\u00fck ad\u0131mlar bile b\u00fcy\u00fck farklar yaratabilir ve bu yolda sizinle birlikteyim!",
+            "bmi": 43.0,
+            "bmi_comment": "Obez",
+            "bko": 1.0,
+            "bko_comment": "Elma tipi (riskli)",
+            "exercise_program": [
+                {
+                    "gun": "Pazartesi",
+                    "egzersiz": "Kardiyo: Y\u00fcr\u00fcy\u00fc\u015f (yoku\u015f yukar\u0131 e\u011fimli y\u00fcr\u00fcme band\u0131nda 30 dakika d\u00fc\u015f\u00fck yo\u011funlukta, nab\u0131z %50-60).  A\u011f\u0131rl\u0131k \u00e7al\u0131\u015fmas\u0131:  Kolay diren\u00e7 bantlar\u0131yla yap\u0131lan \u00fcst v\u00fccut egzersizleri (10 tekrar, 3 set, kol ve omuzlar i\u00e7in; \u00f6rne\u011fin, bantl\u0131 k\u00fcrek \u00e7ekme, bantl\u0131 omuz presleri). Esneme:  Statik esneme hareketleri (her esneme i\u00e7in 30 saniye, 3 tekrar; \u00f6rne\u011fin, omuz, g\u00f6\u011f\u00fcs, s\u0131rt ve triceps esneme hareketleri)."
+                },
+                {
+                    "gun": "Sal\u0131",
+                    "egzersiz": "Kardiyo: Su aerobik (30 dakika d\u00fc\u015f\u00fck yo\u011funlukta). A\u011f\u0131rl\u0131k \u00e7al\u0131\u015fmas\u0131:  Kolay diren\u00e7 bantlar\u0131yla yap\u0131lan alt v\u00fccut egzersizleri (10 tekrar, 3 set, bacak ve kal\u00e7a i\u00e7in; \u00f6rne\u011fin, bantl\u0131 squatlar, bantl\u0131 lungeler). Esneme:  Statik esneme hareketleri (her esneme i\u00e7in 30 saniye, 3 tekrar; \u00f6rne\u011fin, kal\u00e7a, uyluk ve bald\u0131r esneme hareketleri)."
+                },
+                {
+                    "gun": "\u00c7ar\u015famba",
+                    "egzersiz": "Dinlenme veya hafif aktivite (\u00f6rne\u011fin, 30 dakika yava\u015f tempolu y\u00fcr\u00fcy\u00fc\u015f)."
+                },
+                {
+                    "gun": "Per\u015fembe",
+                    "egzersiz": "Kardiyo: Bisiklet (d\u00fc\u015f\u00fck diren\u00e7le 30 dakika, nab\u0131z %50-60). A\u011f\u0131rl\u0131k \u00e7al\u0131\u015fmas\u0131:  Kolay diren\u00e7 bantlar\u0131yla yap\u0131lan t\u00fcm v\u00fccut egzersizleri (10 tekrar, 3 set; \u00f6rne\u011fin, bantl\u0131 s\u0131\u00e7ramalar, bantl\u0131 plank hareketleri). Esneme:  Statik esneme hareketleri (her esneme i\u00e7in 30 saniye, 3 tekrar; t\u00fcm v\u00fccut i\u00e7in)."
+                },
+                {
+                    "gun": "Cuma",
+                    "egzersiz": "Kardiyo: Y\u00fcr\u00fcy\u00fc\u015f (d\u00fcz zeminde 45 dakika d\u00fc\u015f\u00fck yo\u011funlukta, nab\u0131z %50-60). A\u011f\u0131rl\u0131k \u00e7al\u0131\u015fmas\u0131:  Kolay diren\u00e7 bantlar\u0131yla yap\u0131lan \u00fcst v\u00fccut egzersizleri (10 tekrar, 3 set, kol ve omuzlar i\u00e7in). Esneme:  Statik esneme hareketleri (her esneme i\u00e7in 30 saniye, 3 tekrar; \u00f6rne\u011fin, omuz, g\u00f6\u011f\u00fcs, s\u0131rt ve triceps esneme hareketleri)."
+                },
+                {
+                    "gun": "Cumartesi",
+                    "egzersiz": "Kardiyo:  Y\u00fczme (20 dakika d\u00fc\u015f\u00fck yo\u011funlukta).  A\u011f\u0131rl\u0131k \u00e7al\u0131\u015fmas\u0131:  Kolay diren\u00e7 bantlar\u0131yla yap\u0131lan alt v\u00fccut egzersizleri (10 tekrar, 3 set, bacak ve kal\u00e7a i\u00e7in). Esneme:  Statik esneme hareketleri (her esneme i\u00e7in 30 saniye, 3 tekrar; \u00f6rne\u011fin, kal\u00e7a, uyluk ve bald\u0131r esneme hareketleri)."
+                },
+                {
+                    "gun": "Pazar",
+                    "egzersiz": "Dinlenme veya hafif aktivite (\u00f6rne\u011fin, 30 dakika yava\u015f tempolu y\u00fcr\u00fcy\u00fc\u015f) veya yoga (30 dakika)."
+                }
+            ],
+            "diet_plan": [
+                {
+                    "gun": "Pazartesi",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 \u00e7ilek, 1/4 su barda\u011f\u0131 badem s\u00fct\u00fc, bir avu\u00e7 badem",
+                    "ogle": "150 gr \u0131zgara tavuk g\u00f6\u011fs\u00fc salatas\u0131 (marul, domates, salatal\u0131k, ye\u015fil biber), 1 yemek ka\u015f\u0131\u011f\u0131 zeytinya\u011f\u0131 ve limon suyu sosu",
+                    "aksam": "150 gr f\u0131r\u0131nda somon, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ha\u015flanm\u0131\u015f ye\u015fil fasulye",
+                    "ara_ogun": "1 orta boy elma ve 1 avu\u00e7 f\u0131nd\u0131k",
+                    "toplam_kalori": 1850.0
+                },
+                {
+                    "gun": "Sal\u0131",
+                    "kahvalti": "2 yumurta (ha\u015flanm\u0131\u015f veya omlet), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado",
+                    "ogle": "1 su barda\u011f\u0131 mercimek \u00e7orbas\u0131, 1 dilim tam bu\u011fday ekme\u011fi, 100 gr ton bal\u0131\u011f\u0131 salatas\u0131 (marul, domates)",
+                    "aksam": "150 gr \u0131zgara hindi, 1/2 su barda\u011f\u0131 pilav, 1 su barda\u011f\u0131 buharda pi\u015fmi\u015f karnabahar",
+                    "ara_ogun": "1 kase yo\u011furt (az ya\u011fl\u0131) ve 1/4 su barda\u011f\u0131 yaban mersini",
+                    "toplam_kalori": 1700.0
+                },
+                {
+                    "gun": "\u00c7ar\u015famba",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 kuru \u00fcz\u00fcm, 1/4 su barda\u011f\u0131 s\u00fct (az ya\u011fl\u0131), bir avu\u00e7 ceviz",
+                    "ogle": "100 gr tavuk salatas\u0131 (tam bu\u011fday ekme\u011fi aras\u0131), marul, domates, salatal\u0131k",
+                    "aksam": "150 gr f\u0131r\u0131nda patl\u0131can k\u0131zartmas\u0131, 1/2 su barda\u011f\u0131 bulgur pilav\u0131, 1 su barda\u011f\u0131 ha\u015flanm\u0131\u015f ye\u015fil fasulye",
+                    "ara_ogun": "1 muz ve 1 avu\u00e7 f\u0131nd\u0131k",
+                    "toplam_kalori": 1900.0
+                },
+                {
+                    "gun": "Per\u015fembe",
+                    "kahvalti": "2 yumurta (omlet), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado, 1/2 su barda\u011f\u0131 domates",
+                    "ogle": "150 gr \u0131zgara k\u00f6fte (dana eti), 1/2 su barda\u011f\u0131 bulgur pilav\u0131, 1 su barda\u011f\u0131 ha\u015flanm\u0131\u015f brokoli",
+                    "aksam": "150 gr f\u0131r\u0131nda bal\u0131k (uskumru veya levrek), 1/2 su barda\u011f\u0131 ye\u015fil mercimek salatas\u0131, 1/2 su barda\u011f\u0131 ha\u015flanm\u0131\u015f \u0131spanak",
+                    "ara_ogun": "1 kase yo\u011furt (az ya\u011fl\u0131) ve 1/4 su barda\u011f\u0131 \u00e7ilek",
+                    "toplam_kalori": 1800.0
+                },
+                {
+                    "gun": "Cuma",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 kuru kay\u0131s\u0131, 1/4 su barda\u011f\u0131 badem s\u00fct\u00fc, bir avu\u00e7 f\u0131nd\u0131k",
+                    "ogle": "1 su barda\u011f\u0131 mercimek \u00e7orbas\u0131, 1 dilim tam bu\u011fday ekme\u011fi, 100 gr ton bal\u0131\u011f\u0131 salatas\u0131 (marul, domates)",
+                    "aksam": "150 gr \u0131zgara tavuk g\u00f6\u011fs\u00fc, 1/2 su barda\u011f\u0131 pilav, 1 su barda\u011f\u0131 buharda pi\u015fmi\u015f karnabahar",
+                    "ara_ogun": "1 orta boy elma ve 1 avu\u00e7 badem",
+                    "toplam_kalori": 1750.0
+                },
+                {
+                    "gun": "Cumartesi",
+                    "kahvalti": "2 yumurta (ha\u015flanm\u0131\u015f), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado",
+                    "ogle": "100 gr tavuk salatas\u0131 (tam bu\u011fday ekme\u011fi aras\u0131), marul, domates, salatal\u0131k",
+                    "aksam": "150 gr f\u0131r\u0131nda patl\u0131can k\u0131zartmas\u0131, 1/2 su barda\u011f\u0131 bulgur pilav\u0131, 1 su barda\u011f\u0131 ha\u015flanm\u0131\u015f ye\u015fil fasulye",
+                    "ara_ogun": "1 kase yo\u011furt (az ya\u011fl\u0131) ve 1/4 su barda\u011f\u0131 yaban mersini",
+                    "toplam_kalori": 1650.0
+                },
+                {
+                    "gun": "Pazar",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 \u00e7ilek, 1/4 su barda\u011f\u0131 badem s\u00fct\u00fc, bir avu\u00e7 ceviz",
+                    "ogle": "150 gr \u0131zgara somon, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ha\u015flanm\u0131\u015f ye\u015fil fasulye",
+                    "aksam": "150 gr f\u0131r\u0131nda hindi, 1/2 su barda\u011f\u0131 pilav, 1 su barda\u011f\u0131 buharda pi\u015fmi\u015f karnabahar",
+                    "ara_ogun": "1 muz ve 1 avu\u00e7 f\u0131nd\u0131k",
+                    "toplam_kalori": 1950.0
+                }
+            ]
+        }
+    }
+}

@@ -62,7 +62,7 @@ const Results = ({ handleCloseResults }) => {
         <h2>Sonuçlar & Diyet Programınız</h2>
         <ResultIntro />
 
-        <BodyFatLevelBar bodyFatPercent={parseFloat(yag_orani)} />
+        <BodyFatLevelBar bodyFatPercent={yag_orani} />
 
         <BmiLevelBar bmi={bmi} />
 

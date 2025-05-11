@@ -1,12 +1,20 @@
 // src/context/AnalysisContext.js
-import React, { createContext, useContext } from "react";
-import analysisData from "../components/analiz_sonucu.json";
+import React, { createContext, useContext, useState } from "react";
 
 const AnalysisContext = createContext(null);
 
 export const AnalysisProvider = ({ children }) => {
+  const [analysisState, setAnalysisState] = useState();
+
+  const updateAnalysis = (newData) => {
+    setAnalysisState((prevState) => ({
+      ...prevState,
+      ...newData,
+    }));
+  };
+
   return (
-    <AnalysisContext.Provider value={analysisData}>
+    <AnalysisContext.Provider value={{ ...analysisState, updateAnalysis }}>
       {children}
     </AnalysisContext.Provider>
   );

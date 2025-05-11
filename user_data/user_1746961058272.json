@@ -1,0 +1,86 @@
+{
+    "user_id": "user_1746961058272",
+    "age": 1,
+    "gender": "Erkek",
+    "measurements": {
+        "height_cm": 1,
+        "weight_kg": 1,
+        "waist_cm": 2,
+        "hip_cm": 1
+    },
+    "calculated_metrics": {
+        "bmi": 10000.0,
+        "whr": 2.0
+    },
+    "progress_history": [],
+    "body_fat_estimates": {
+        "from_photo": {
+            "value": "%25",
+            "timestamp": "2025-05-11T10:57:52.938069Z",
+            "analysis": "Verilen bilgiler, a\u015f\u0131r\u0131 kilolu ve obezite riskini g\u00f6steriyor.  Bel/kal\u00e7a oran\u0131n\u0131z, kar\u0131n b\u00f6lgesinde ya\u011f birikiminin y\u00fcksek oldu\u011funu g\u00f6steriyor. Sa\u011fl\u0131kl\u0131 bir ya\u015fam tarz\u0131 i\u00e7in d\u00fczenli egzersiz ve dengeli beslenmeye odaklanmak \u00e7ok \u00f6nemli.",
+            "bmi": 10000.0,
+            "bmi_comment": "Obez",
+            "bko": 2.0,
+            "bko_comment": "Elma tipi (riskli)",
+            "exercise_program": [],
+            "diet_plan": [
+                {
+                    "gun": "Pazartesi",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 \u00e7ilek, 1/4 su barda\u011f\u0131 badem s\u00fct\u00fc, bir avu\u00e7 badem",
+                    "ogle": "150 gr tavuk salatas\u0131 (tavuk g\u00f6\u011fs\u00fc, marul, domates, salatal\u0131k, az ya\u011fl\u0131 yo\u011furt soslu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr f\u0131r\u0131nda somon, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ye\u015fil fasulye",
+                    "ara_ogun": "1 elma ve bir avu\u00e7 ceviz",
+                    "toplam_kalori": 1800.0
+                },
+                {
+                    "gun": "Sal\u0131",
+                    "kahvalti": "2 yumurta (ha\u015flanm\u0131\u015f veya omlet), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado",
+                    "ogle": "1 kase mercimek \u00e7orbas\u0131, 1 dilim tam bu\u011fday ekme\u011fi, 1 k\u00fc\u00e7\u00fck salata (marul, domates, salatal\u0131k)",
+                    "aksam": "150 gr hindi eti, 1/2 su barda\u011f\u0131 karnabahar, 1/2 su barda\u011f\u0131 havu\u00e7",
+                    "ara_ogun": "1 muz ve bir avu\u00e7 f\u0131nd\u0131k",
+                    "toplam_kalori": 1750.0
+                },
+                {
+                    "gun": "\u00c7ar\u015famba",
+                    "kahvalti": "Yunan yo\u011furdu (1 kase), 1/4 su barda\u011f\u0131 yaban mersini, 1 yemek ka\u015f\u0131\u011f\u0131 chia tohumu",
+                    "ogle": "150 gr ton bal\u0131\u011f\u0131 salatas\u0131 (ton bal\u0131\u011f\u0131, marul, domates, salatal\u0131k, az ya\u011fl\u0131 mayonez soslu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr tavuk g\u00f6\u011fs\u00fc, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ye\u015fil fasulye",
+                    "ara_ogun": "1 portakal ve bir avu\u00e7 kuru kay\u0131s\u0131",
+                    "toplam_kalori": 1900.0
+                },
+                {
+                    "gun": "Per\u015fembe",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 \u00e7ilek, 1/4 su barda\u011f\u0131 badem s\u00fct\u00fc, bir avu\u00e7 badem",
+                    "ogle": "1 kase mercimek \u00e7orbas\u0131, 1 dilim tam bu\u011fday ekme\u011fi, 1 k\u00fc\u00e7\u00fck salata (marul, domates, salatal\u0131k)",
+                    "aksam": "150 gr f\u0131r\u0131nda somon, 1/2 su barda\u011f\u0131 karnabahar, 1/2 su barda\u011f\u0131 havu\u00e7",
+                    "ara_ogun": "1 elma ve bir avu\u00e7 ceviz",
+                    "toplam_kalori": 1850.0
+                },
+                {
+                    "gun": "Cuma",
+                    "kahvalti": "2 yumurta (ha\u015flanm\u0131\u015f veya omlet), 1 dilim tam bu\u011fday ekme\u011fi, 1/4 avokado",
+                    "ogle": "150 gr tavuk salatas\u0131 (tavuk g\u00f6\u011fs\u00fc, marul, domates, salatal\u0131k, az ya\u011fl\u0131 yo\u011furt soslu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr hindi eti, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ye\u015fil fasulye",
+                    "ara_ogun": "1 muz ve bir avu\u00e7 f\u0131nd\u0131k",
+                    "toplam_kalori": 1700.0
+                },
+                {
+                    "gun": "Cumartesi",
+                    "kahvalti": "Yunan yo\u011furdu (1 kase), 1/4 su barda\u011f\u0131 yaban mersini, 1 yemek ka\u015f\u0131\u011f\u0131 chia tohumu",
+                    "ogle": "150 gr ton bal\u0131\u011f\u0131 salatas\u0131 (ton bal\u0131\u011f\u0131, marul, domates, salatal\u0131k, az ya\u011fl\u0131 mayonez soslu), 1 dilim tam bu\u011fday ekme\u011fi",
+                    "aksam": "150 gr tavuk g\u00f6\u011fs\u00fc, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 ye\u015fil fasulye",
+                    "ara_ogun": "1 portakal ve bir avu\u00e7 kuru kay\u0131s\u0131",
+                    "toplam_kalori": 1950.0
+                },
+                {
+                    "gun": "Pazar",
+                    "kahvalti": "1 kase yulaf ezmesi (yar\u0131m su barda\u011f\u0131), 1/4 su barda\u011f\u0131 \u00e7ilek, 1/4 su barda\u011f\u0131 badem s\u00fct\u00fc, bir avu\u00e7 badem",
+                    "ogle": "150 gr f\u0131r\u0131nda tavuk, 1/2 su barda\u011f\u0131 patates p\u00fcresi (az ya\u011fl\u0131), 1/2 su barda\u011f\u0131 ye\u015fil fasulye",
+                    "aksam": "150 gr dana eti, 1/2 su barda\u011f\u0131 brokoli, 1/2 su barda\u011f\u0131 havu\u00e7",
+                    "ara_ogun": "1 elma ve bir avu\u00e7 ceviz",
+                    "toplam_kalori": 2000.0
+                }
+            ]
+        }
+    }
+}

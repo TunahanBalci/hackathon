@@ -7,20 +7,19 @@ from flask import Flask, request, jsonify, redirect, session, url_for
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
+from flask_session import Session
+import google.generativeai as genai
 
 load_dotenv()  # Load environment variables from .env
+
+# Allow OAuth2 over HTTP in development
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
 # Import your utility, Gemini, and Google Calendar modules
 from utils.calculations import calculate_all_metrics
 from gemini.meal_planner import generate_diet_plan_with_gemini
 from gemini.fat_analyzer import analyze_fat_percentage_with_gemini
-from google_calendar_service import (
-    start_google_auth_flow,
-    process_google_auth_callback,
-    create_weekly_checkup_event_for_user,
-    delete_calendar_event_for_user,
-    get_calendar_service_for_user  # For checking if user is authenticated
-)
+from google_calendar_service import calendar_service
 
 # --- Flask App Setup ---
 app = Flask(__name__)
@@ -28,7 +27,30 @@ app.secret_key = os.getenv('FLASK_SECRET_KEY')
 if not app.secret_key:
     raise ValueError("No FLASK_SECRET_KEY set. Please set it in your .env file.")
 
-CORS(app)  # Enable CORS for frontend interaction
+# Configure session settings
+app.config.update(
+    SESSION_COOKIE_SECURE=False,  # Set to False for local development
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE='Lax',
+    PERMANENT_SESSION_LIFETIME=datetime.timedelta(minutes=30),
+    SESSION_REFRESH_EACH_REQUEST=True,  # Refresh session on each request
+    SESSION_TYPE='filesystem',  # Use filesystem for session storage
+    SESSION_FILE_DIR=os.path.join(os.getcwd(), 'flask_session')  # Store sessions in flask_session directory
+)
+
+# Initialize Flask-Session
+Session(app)
+
+# Configure CORS with specific settings for OAuth
+CORS(app, supports_credentials=True, resources={
+    r"/*": {
+        "origins": ["http://localhost:3000", "http://localhost:5000"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True,
+        "expose_headers": ["Set-Cookie"]
+    }
+})
 
 # --- Configuration from .env ---
 USER_DATA_FOLDER = os.getenv('USER_DATA_FOLDER', 'user_data')
@@ -89,71 +111,149 @@ def allowed_file(filename):
 
 # --- Google OAuth Endpoints ---
 @app.route('/authorize-google-calendar/<user_id>')
-def authorize_google_calendar_route(user_id):  # Renamed to avoid conflict
+def authorize_google_calendar_route(user_id):
     if not user_id:
         return jsonify({"error": "user_id is required to start authorization"}), 400
-    session['oauth_user_id'] = user_id  # Store user_id for the callback
+    
+    try:
+        # Store user_id in session before starting auth flow
+        session.clear()  # Clear any existing session data
+        session['oauth_user_id'] = user_id
+        session.permanent = True  # Make session persistent
+        
+        # Debug logging
+        app.logger.info(f"Starting auth flow for user {user_id}")
+        app.logger.info(f"Session contents before auth: {dict(session)}")
+        
+        authorization_url = calendar_service.start_auth_flow(session)
+        
+        if authorization_url:
+            # Verify that state was properly set in session
+            if 'google_oauth_state' not in session:
+                app.logger.error("OAuth state not set in session after start_auth_flow")
+                return jsonify({"error": "Failed to initialize OAuth state"}), 500
+                
+            app.logger.info(f"Session contents after auth: {dict(session)}")
+            app.logger.info(f"Redirecting user {user_id} to Google for auth: {authorization_url}")
+            return redirect(authorization_url)
+        else:
+            app.logger.error("Failed to get authorization_url from start_google_auth_flow")
+            return jsonify({"error": "Failed to start Google authentication flow. Check server logs."}), 500
+    except Exception as e:
+        app.logger.error(f"Error in authorization flow: {str(e)}")
+        return jsonify({"error": f"Authorization flow error: {str(e)}"}), 500
 
-    # Pass the Flask session object to your auth flow function
-    authorization_url = start_google_auth_flow(session)
+@app.route('/oauth2callback')
+def oauth2callback_route():
+    try:
+        # Debug logging
+        app.logger.info(f"OAuth callback received. Session contents: {dict(session)}")
+        app.logger.info(f"Callback URL parameters: {dict(request.args)}")
+        
+        # Get user_id from session
+        user_id = session.get('oauth_user_id')
+        session_state = session.get('google_oauth_state')
+        
+        app.logger.info(f"Retrieved from session - user_id: {user_id}, state: {session_state}")
+        
+        if not user_id:
+            app.logger.error("OAuth callback error: User ID missing from session.")
+            # Try to get user_id from URL parameters as fallback
+            user_id = request.args.get('state', '').split('_')[0] if request.args.get('state') else None
+            if not user_id:
+                return jsonify({"error": "OAuth callback error: User session context lost."}), 400
+            app.logger.info(f"Recovered user_id from state parameter: {user_id}")
+        
+        if not session_state:
+            app.logger.error("OAuth callback error: OAuth state missing from Flask session.")
+            # Try to recover state from URL parameters
+            google_returned_state = request.args.get('state')
+            if google_returned_state:
+                app.logger.info(f"Recovering state from URL parameter: {google_returned_state}")
+                session_state = google_returned_state
+            else:
+                return jsonify({"error": "OAuth callback error: Session state missing and not found in URL."}), 400
+        
+        google_returned_state = request.args.get('state')
+        if not google_returned_state:
+            app.logger.error("No state parameter in callback URL")
+            return jsonify({"error": "OAuth callback error: No state parameter in callback URL"}), 400
+            
+        if google_returned_state != session_state:
+            app.logger.warning(f"OAuth callback state mismatch. Session state: {session_state}, URL state: {google_returned_state}")
+            return jsonify({"error": "OAuth callback error: State mismatch."}), 400
+        
+        if request.args.get('error'):
+            auth_error = request.args.get('error')
+            app.logger.warning(f"Google Auth Error for user {user_id}: {auth_error}")
+            return redirect(url_for('auth_status_page', status='error', message=auth_error, _external=True))
+        
+        # Now that we've verified everything, we can safely pop the values
+        session.pop('oauth_user_id', None)
+        session.pop('google_oauth_state', None)
+        
+        success = calendar_service.process_auth_callback(
+            user_id,
+            app.config['USER_DATA_FOLDER'],
+            request.url,
+            session_state
+        )
+        
+        if success:
+            app.logger.info(f"Google Calendar successfully authorized for user {user_id}.")
+            return redirect(url_for('auth_status_page', status='success', _external=True))
+        else:
+            app.logger.error(f"Failed to process Google authentication callback for user {user_id}.")
+            return redirect(url_for('auth_status_page', status='error', message='processing_failed', _external=True))
+            
+    except Exception as e:
+        app.logger.error(f"Unexpected error in OAuth callback: {str(e)}")
+        return jsonify({"error": f"OAuth callback error: {str(e)}"}), 500
 
-    if authorization_url:
-        app.logger.info(f"Redirecting user {user_id} to Google for auth: {authorization_url}")
-        return redirect(authorization_url)
-    else:
-        app.logger.error("Failed to get authorization_url from start_google_auth_flow")
-        return jsonify({"error": "Failed to start Google authentication flow. Check server logs."}), 500
-
-
-@app.route('/oauth2callback')  # This MUST match your GOOGLE_REDIRECT_URI
-def oauth2callback_route():  # Renamed to avoid conflict
-    user_id = session.pop('oauth_user_id', None)
-    session_state_from_flask = session.pop('google_oauth_state', None)  # State stored by start_google_auth_flow
-
-    if not user_id:
-        app.logger.error("OAuth callback error: User ID missing from session.")
-        return jsonify({"error": "OAuth callback error: User session context lost."}), 400
-    if not session_state_from_flask:
-        app.logger.error("OAuth callback error: OAuth state missing from Flask session.")
-        return jsonify({"error": "OAuth callback error: Session state missing."}), 400
-
-    google_returned_state = request.args.get('state')
-    if google_returned_state != session_state_from_flask:
-        app.logger.warning(f"OAuth callback state mismatch for user {user_id}. CSRF attempt?")
-        return jsonify({"error": "OAuth callback error: State mismatch."}), 400
-
-    if request.args.get('error'):
-        auth_error = request.args.get('error')
-        app.logger.warning(f"Google Auth Error for user {user_id}: {auth_error}")
-        # Provide a more user-friendly redirect or message
-        return redirect(url_for('auth_status_page', status='error', message=auth_error, _external=True))
-
-    success = process_google_auth_callback(
-        user_id,
-        app.config['USER_DATA_FOLDER'],
-        request.url,  # Pass the full callback URL
-        session_state_from_flask  # Pass the original state for verification
-    )
-
-    if success:
-        app.logger.info(f"Google Calendar successfully authorized for user {user_id}.")
-        # Redirect to a frontend page indicating success
-        # For hackathon, a simple message or redirect to a known frontend route
-        return redirect(url_for('auth_status_page', status='success', _external=True))
-
-    else:
-        app.logger.error(f"Failed to process Google authentication callback for user {user_id}.")
-        return redirect(url_for('auth_status_page', status='error', message='processing_failed', _external=True))
-
-
-@app.route('/auth_status')  # Simple page to show auth status after redirect
+@app.route('/auth_status')
 def auth_status_page():
-    status = request.args.get('status')
-    message = request.args.get('message')
-    if status == 'success':
-        return "<h1>Google Calendar Authorization Successful!</h1><p>You can now close this tab and return to the application.</p>"
-    else:
-        return f"<h1>Google Calendar Authorization Failed</h1><p>Error: {message or 'Unknown error'}. Please try again or contact support.</p>"
+    try:
+        status = request.args.get('status')
+        message = request.args.get('message')
+        
+        if status == 'success':
+            return """
+            <html>
+                <head>
+                    <title>Authorization Successful</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+                        .success { color: #28a745; }
+                        .message { margin: 20px 0; }
+                    </style>
+                </head>
+                <body>
+                    <h1 class="success">Google Calendar Authorization Successful!</h1>
+                    <p class="message">You can now close this tab and return to the application.</p>
+                </body>
+            </html>
+            """
+        else:
+            return f"""
+            <html>
+                <head>
+                    <title>Authorization Failed</title>
+                    <style>
+                        body {{ font-family: Arial, sans-serif; text-align: center; padding: 50px; }}
+                        .error {{ color: #dc3545; }}
+                        .message {{ margin: 20px 0; }}
+                    </style>
+                </head>
+                <body>
+                    <h1 class="error">Google Calendar Authorization Failed</h1>
+                    <p class="message">Error: {message or 'Unknown error'}</p>
+                    <p>Please try again or contact support.</p>
+                </body>
+            </html>
+            """
+    except Exception as e:
+        app.logger.error(f"Error in auth status page: {str(e)}")
+        return f"<h1>Error</h1><p>An unexpected error occurred: {str(e)}</p>"
 
 
 # --- Core Application API Endpoints ---
@@ -223,45 +323,67 @@ def analyze_body_photo(user_id):
     if file.filename == '': return jsonify({"error": "No selected file"}), 400
 
     if file and allowed_file(file.filename):
-        temp_file_handler = None  # Use a more descriptive name
+        temp_file_handler = None
         try:
+            # Load user profile
+            user_profile = load_user_profile(user_id)
+            if not user_profile:
+                return jsonify({"error": "User profile not found. Please create a profile first."}), 404
+
+            # Save uploaded file temporarily
             _, ext = os.path.splitext(secure_filename(file.filename))
-            # delete=False is important as we pass path, then manually delete
-            temp_file_handler = tempfile.NamedTemporaryFile(delete=False, suffix=ext, prefix=f"{user_id}_photo_")
-            file.save(temp_file_handler.name)
-            temp_filepath = temp_file_handler.name
-            temp_file_handler.close()  # Close file before passing path
+            temp_file_handler, temp_file_path = tempfile.mkstemp(suffix=ext)
+            file.save(temp_file_path)
 
-            current_profile = load_user_profile(user_id)
-            analysis_result = analyze_fat_percentage_with_gemini(temp_filepath, current_profile)
+            # Log the user profile data for debugging
+            app.logger.info(f"User profile data: {json.dumps(user_profile, indent=2)}")
+            app.logger.info(f"Temporary file path: {temp_file_path}")
 
-            if analysis_result and "error" not in analysis_result:
-                if 'body_fat_estimates' not in current_profile: current_profile['body_fat_estimates'] = {}
-                current_profile['body_fat_estimates']['from_image'] = {
-                    "value": analysis_result.get("estimated_body_fat_percentage"),
-                    "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
-                    "confidence_score": analysis_result.get("confidence_score"),
-                    "feedback": analysis_result.get("feedback")
-                }
-                if save_user_profile(user_id, current_profile):
-                    return jsonify(
-                        {"message": "Photo analyzed", "analysis": analysis_result, "profile": current_profile}), 200
-                else:
-                    return jsonify({"error": "Analyzed, but failed to update profile"}), 500
-            else:
-                error_msg = analysis_result.get("error") if analysis_result else "Fat analysis failed"
-                return jsonify({"error": f"Fat analysis failed: {error_msg}"}), 500
+            try:
+                # Analyze the photo using Gemini
+                analysis_result = analyze_fat_percentage_with_gemini(user_profile, temp_file_path)
+                app.logger.info(f"Analysis result: {json.dumps(analysis_result, indent=2)}")
+            except Exception as e:
+                app.logger.error(f"Error in Gemini analysis: {str(e)}")
+                return jsonify({"error": f"Gemini analysis failed: {str(e)}"}), 500
+
+            # Update user profile with analysis results
+            if 'body_fat_estimates' not in user_profile:
+                user_profile['body_fat_estimates'] = {}
+
+            user_profile['body_fat_estimates']['from_photo'] = {
+                "value": analysis_result.get('yag_orani'),
+                "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+                "analysis": analysis_result.get('analiz'),
+                "bmi": analysis_result.get('bmi'),
+                "bmi_comment": analysis_result.get('bmi_yorum'),
+                "bko": analysis_result.get('bko'),
+                "bko_comment": analysis_result.get('bko_yorum'),
+                "exercise_program": analysis_result.get('egzersiz_programi'),
+                "diet_plan": analysis_result.get('diyet_listesi')
+            }
+
+            # Save updated profile
+            if not save_user_profile(user_id, user_profile):
+                return jsonify({"error": "Failed to save analysis results"}), 500
+
+            return jsonify(analysis_result), 200
+
         except Exception as e:
-            app.logger.error(f"Photo analysis error for {user_id}: {e}")
-            return jsonify({"error": "Internal error during photo analysis."}), 500
+            app.logger.error(f"Error analyzing photo for user {user_id}: {str(e)}")
+            app.logger.exception("Full traceback:")  # This will log the full stack trace
+            return jsonify({"error": f"Failed to analyze photo: {str(e)}"}), 500
+
         finally:
-            if temp_file_handler and os.path.exists(temp_file_handler.name):
+            # Clean up temporary file
+            if temp_file_handler:
+                os.close(temp_file_handler)
                 try:
-                    os.remove(temp_file_handler.name)
-                except OSError as e_del:
-                    app.logger.error(f"Error deleting temp file {temp_file_handler.name}: {e_del}")
-    else:
-        return jsonify({"error": "File type not allowed"}), 400
+                    os.unlink(temp_file_path)
+                except Exception as e:
+                    app.logger.error(f"Error cleaning up temp file: {str(e)}")
+
+    return jsonify({"error": "Invalid file type"}), 400
 
 
 @app.route('/generate-diet-plan/<user_id>', methods=['POST'])
@@ -317,53 +439,60 @@ def generate_diet(user_id):
 
 
 @app.route('/profile/<user_id>/schedule-checkup', methods=['POST'])
-def schedule_checkup_route(user_id):  # Renamed to avoid conflict
-    if not user_id: return jsonify({"error": "user_id is required"}), 400
+def schedule_checkup_route(user_id):
+    if not user_id:
+        return jsonify({"error": "user_id is required"}), 400
+    
     data = request.get_json()
     if not data or 'day_of_week' not in data or 'time_of_day' not in data:
         return jsonify({"error": "day_of_week and time_of_day are required."}), 400
-
-    day_of_week = data['day_of_week']
-    time_of_day = data['time_of_day']
-
+    
     try:
         user_profile = load_user_profile(user_id)
-        if not user_profile: return jsonify({"error": f"No profile for {user_id}"}), 404
+        if not user_profile:
+            return jsonify({"error": f"No profile for {user_id}"}), 404
     except Exception as e:
         return jsonify({"error": f"Failed to load profile for scheduling: {str(e)}"}), 500
-
-    # Check if user has Google Auth tokens by trying to get the service
-    # The get_calendar_service_for_user will return None if not authenticated
-    calendar_service = get_calendar_service_for_user(user_id, app.config['USER_DATA_FOLDER'])
-    if not calendar_service:
+    
+    # Check if user has Google Auth tokens
+    calendar_service_instance = calendar_service.get_calendar_service(user_id, app.config['USER_DATA_FOLDER'])
+    if not calendar_service_instance:
         auth_url = url_for('authorize_google_calendar_route', user_id=user_id, _external=True)
         return jsonify({
             "error": "Google Calendar not authorized or token invalid.",
             "authorization_needed": True,
             "authorization_url": auth_url
         }), 401
-
+    
+    # Delete old event if exists
     old_event_id = user_profile.get("checkup_preference", {}).get("google_calendar_event_id")
     if old_event_id:
-        delete_calendar_event_for_user(user_id, app.config['USER_DATA_FOLDER'], old_event_id)  # Pass user_profile_dir
-
-    event_id = create_weekly_checkup_event_for_user(
+        calendar_service.delete_event(user_id, app.config['USER_DATA_FOLDER'], old_event_id)
+    
+    # Create new event
+    event_id = calendar_service.create_weekly_checkup(
         user_id,
-        app.config['USER_DATA_FOLDER'],  # Pass user_profile_dir
-        day_of_week,
-        time_of_day
+        app.config['USER_DATA_FOLDER'],
+        data['day_of_week'],
+        data['time_of_day']
     )
-
+    
     if event_id:
         user_profile['checkup_preference'] = {
-            "day_of_week": day_of_week, "time_of_day": time_of_day,
+            "day_of_week": data['day_of_week'],
+            "time_of_day": data['time_of_day'],
             "google_calendar_event_id": event_id
         }
+        
         if save_user_profile(user_id, user_profile):
-            return jsonify({"message": "Weekly check-up scheduled in your Google Calendar.", "event_id": event_id}), 200
+            return jsonify({
+                "message": "Weekly check-up scheduled in your Google Calendar.",
+                "event_id": event_id
+            }), 200
         else:
             return jsonify({
-                               "message": "Check-up scheduled, but failed to update profile. Event ID: " + event_id}), 500  # Partial success
+                "message": "Check-up scheduled, but failed to update profile. Event ID: " + event_id
+            }), 500
     else:
         auth_url = url_for('authorize_google_calendar_route', user_id=user_id, _external=True)
         return jsonify({
@@ -375,90 +504,103 @@ def schedule_checkup_route(user_id):  # Renamed to avoid conflict
 
 @app.route('/track-progress/<user_id>', methods=['POST'])
 def track_user_progress(user_id):
-    if not user_id: return jsonify({"error": "user_id is required"}), 400
+    if not user_id:
+        return jsonify({"error": "user_id is required"}), 400
+    
     data = request.get_json()
-    if not data or 'measurements' not in data:
-        return jsonify({"error": "No new measurement data provided"}), 400
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+    
     try:
         current_profile = load_user_profile(user_id)
-        if not current_profile: return jsonify({"error": f"No profile for {user_id}"}), 404
-    except Exception as e:
-        return jsonify({"error": f"Failed to load profile for progress tracking: {str(e)}"}), 500
-
-    new_measurements = data['measurements']
-    user_gender = current_profile.get('gender')
-    if 'height_cm' not in new_measurements: new_measurements['height_cm'] = current_profile.get('measurements', {}).get(
-        'height_cm')
-    if not new_measurements.get('height_cm') or not new_measurements.get('weight_kg'):
-        return jsonify({"error": "Height and Weight are mandatory for progress tracking."}), 400
-
-    calculated_metrics_progress = calculate_all_metrics(new_measurements, user_gender)
-    progress_entry = {
-        "date": data.get("date", datetime.datetime.utcnow().isoformat() + "Z"),
-        "measurements": new_measurements,
-        "calculated_metrics": calculated_metrics_progress
-    }
-    if 'progress_history' not in current_profile or not isinstance(current_profile['progress_history'], list):
-        current_profile['progress_history'] = []
-    current_profile['progress_history'].append(progress_entry)
-    current_profile['measurements'] = new_measurements
-    current_profile['calculated_metrics'] = calculated_metrics_progress
-    if 'bfp_from_measurements_navy' in calculated_metrics_progress:
-        if 'body_fat_estimates' not in current_profile: current_profile['body_fat_estimates'] = {}
-        current_profile['body_fat_estimates']['from_measurements'] = {
-            "value": calculated_metrics_progress['bfp_from_measurements_navy'],
+        if not current_profile:
+            return jsonify({"error": f"No profile found for user {user_id}"}), 404
+        
+        # Validate required fields
+        required_fields = ['weight_kg', 'measurements']
+        if not all(field in data for field in required_fields):
+            return jsonify({"error": "Missing required fields: weight_kg and measurements"}), 400
+        
+        # Create progress entry
+        progress_entry = {
             "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
-            "formula_used": "Navy Method"
+            "weight_kg": data['weight_kg'],
+            "measurements": data['measurements']
         }
-
-    response_message = "Progress tracked successfully."
-    response_data_payload = {"profile": current_profile}
-
-    if data.get('regenerate_plan', False):
-        # Re-use logic from generate_diet for consistency
-        bf_img = current_profile.get('body_fat_estimates', {}).get('from_image', {}).get('value')
-        bf_msr = current_profile.get('body_fat_estimates', {}).get('from_measurements', {}).get('value')
-        bmi_val = current_profile.get('calculated_metrics', {}).get('bmi')
-        ctx_msg = ""
-        if bf_img is not None:
-            ctx_msg = f"Plan based on image BFP: {bf_img}%."
-        elif bf_msr is not None:
-            ctx_msg = f"Plan based on measurement BFP: {bf_msr}%."
-        elif bmi_val is not None:
-            ctx_msg = "Warning: BFP not available. Plan based on BMI."
+        
+        # Add any optional fields if provided
+        if 'notes' in data:
+            progress_entry['notes'] = data['notes']
+        
+        # Initialize progress_history if it doesn't exist
+        if 'progress_history' not in current_profile:
+            current_profile['progress_history'] = []
+        
+        # Add new progress entry
+        current_profile['progress_history'].append(progress_entry)
+        
+        # Update current measurements
+        current_profile['measurements'] = data['measurements']
+        
+        # Recalculate metrics
+        calculated_metrics = calculate_all_metrics(data['measurements'], current_profile.get('gender'))
+        current_profile['calculated_metrics'] = calculated_metrics
+        
+        # Update body fat estimates if available
+        if 'bfp_from_measurements_navy' in calculated_metrics:
+            if 'body_fat_estimates' not in current_profile:
+                current_profile['body_fat_estimates'] = {}
+            current_profile['body_fat_estimates']['from_measurements'] = {
+                "value": calculated_metrics['bfp_from_measurements_navy'],
+                "timestamp": progress_entry['timestamp'],
+                "formula_used": "Navy Method"
+            }
+        
+        if save_user_profile(user_id, current_profile):
+            return jsonify({
+                "message": "Progress tracked successfully",
+                "profile": current_profile
+            }), 200
         else:
-            ctx_msg = "Warning: Insufficient data for body comp."
+            return jsonify({"error": "Failed to save progress"}), 500
+            
+    except Exception as e:
+        app.logger.error(f"Error tracking progress for user {user_id}: {e}")
+        return jsonify({"error": f"Failed to track progress: {str(e)}"}), 500
 
-        data_gemini_prog = {
-            "user_id": user_id, "age": current_profile.get("age"), "gender": user_gender,
-            "measurements": current_profile.get("measurements"),
-            "calculated_metrics": current_profile.get("calculated_metrics"),
-            "lifestyle": current_profile.get("lifestyle"),
-            "body_fat_estimates": current_profile.get('body_fat_estimates', {}),
-            "body_composition_assessment_info": ctx_msg, "progress_history": current_profile.get("progress_history", [])
-        }
-        new_diet_plan = generate_diet_plan_with_gemini(data_gemini_prog)
-        if new_diet_plan and "error" not in new_diet_plan:
-            current_profile['current_diet_plan'] = new_diet_plan
-            if "notes_from_gemini" not in new_diet_plan: new_diet_plan["notes_from_gemini"] = ""
-            new_diet_plan["notes_from_gemini"] = ctx_msg + "\n" + new_diet_plan.get("notes_from_gemini", "")
-            response_message += " New diet plan generated."
-            response_data_payload['new_diet_plan'] = new_diet_plan
-            response_data_payload['context_message'] = ctx_msg
-        else:
-            response_message += " Failed to regenerate diet plan."
 
-    if save_user_profile(user_id, current_profile):
-        return jsonify({"message": response_message, "data": response_data_payload}), 200
-    else:
-        return jsonify({"error": "Progress tracked, but failed to save updated profile"}), 500
+@app.route('/test-gemini', methods=['GET'])
+def test_gemini():
+    try:
+        api_key = os.getenv('GEMINI_API_KEY')
+        if not api_key:
+            return jsonify({"error": "GEMINI_API_KEY not found in environment variables"}), 500
+        
+        # Try to initialize the model
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+        
+        # Try a simple test generation
+        response = model.generate_content("Say hello!")
+        
+        return jsonify({
+            "status": "success",
+            "message": "Gemini API is properly configured",
+            "response": response.text
+        }), 200
+    except Exception as e:
+        app.logger.error(f"Gemini API test failed: {str(e)}")
+        return jsonify({
+            "error": f"Gemini API test failed: {str(e)}",
+            "api_key_exists": bool(os.getenv('GEMINI_API_KEY'))
+        }), 500
 
 
 # --- Main Execution ---
 if __name__ == '__main__':
-    # Ensure GOOGLE_CLIENT_SECRET_FILE is valid before starting if OAuth is critical
-    if not os.getenv('GOOGLE_CLIENT_SECRET_FILE') or not os.path.exists(os.getenv('GOOGLE_CLIENT_SECRET_FILE')):
+    # Ensure GOOGLE_CLIENT_CONFIG_JSON is valid before starting if OAuth is critical
+    if not os.getenv('GOOGLE_CLIENT_CONFIG_JSON'):
         app.logger.warning(
-            "GOOGLE_CLIENT_SECRET_FILE not found or not configured in .env. Google Calendar features will fail.")
+            "GOOGLE_CLIENT_CONFIG_JSON not found or not configured in .env. Google Calendar features will fail.")
 
     app.run(debug=(os.getenv('FLASK_ENV') == 'development'), port=int(os.getenv('FLASK_RUN_PORT', 5000)))

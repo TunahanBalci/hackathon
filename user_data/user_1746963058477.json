@@ -1,0 +1,16 @@
+{
+    "user_id": "user_1746963058477",
+    "age": null,
+    "gender": "Kad\u0131n",
+    "measurements": {
+        "height_cm": 180,
+        "weight_kg": 90,
+        "waist_cm": null,
+        "hip_cm": null
+    },
+    "calculated_metrics": {
+        "bmi": 27.78
+    },
+    "progress_history": [],
+    "body_fat_estimates": {}
+}

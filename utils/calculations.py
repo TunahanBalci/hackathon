@@ -1,6 +1,35 @@
 # backend/utils/calculations.py
 import math
 
+def calculate_bmi(weight_kg, height_cm):
+    """
+    Calculates Body Mass Index (BMI).
+    Args:
+        weight_kg (float): Weight in kilograms
+        height_cm (float): Height in centimeters
+    Returns:
+        float: BMI value, or None if inputs are invalid
+    """
+    if not weight_kg or not height_cm or weight_kg <= 0 or height_cm <= 0:
+        return None
+    height_m = height_cm / 100
+    bmi = weight_kg / (height_m * height_m)
+    return round(bmi, 2)
+
+def calculate_whr(waist_cm, hip_cm):
+    """
+    Calculates Waist-to-Hip Ratio (WHR).
+    Args:
+        waist_cm (float): Waist circumference in centimeters
+        hip_cm (float): Hip circumference in centimeters
+    Returns:
+        float: WHR value, or None if inputs are invalid
+    """
+    if not waist_cm or not hip_cm or waist_cm <= 0 or hip_cm <= 0:
+        return None
+    whr = waist_cm / hip_cm
+    return round(whr, 2)
+
 # ... (calculate_bmi, calculate_whr, calculate_all_metrics from before) ...
 
 def calculate_body_fat_navy(gender, height_cm, neck_cm, waist_cm, hip_cm=None):

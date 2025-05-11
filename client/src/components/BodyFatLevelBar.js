@@ -2,12 +2,15 @@ import React from "react";
 import styles from "./BodyFatLevelBar.module.css";
 
 const BodyFatLevelBar = ({
-  bodyFatPercent = 0,
+  bodyFatPercent,
   thresholds = { underfat: 8, healthy: 20, overfat: 25 },
 }) => {
+  bodyFatPercent = bodyFatPercent.split("%");
+  bodyFatPercent = bodyFatPercent[1];
+  bodyFatPercent = parseFloat(bodyFatPercent);
+
   const pct = Math.max(0, Math.min(100, bodyFatPercent));
   const { underfat, healthy, overfat } = thresholds;
-
   // Find current segment
   let currentKey, currentLabel;
   if (pct < underfat) {

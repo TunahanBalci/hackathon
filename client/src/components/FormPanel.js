@@ -2,13 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import LoadingScreen from "./LoadingScreen";
 import styles from "./FormPanel.module.css";
 import Results from "./Results";
+import { useAnalysis } from "../provider/AnalysisContext";
 
 const FormPanel = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState();
   const [gender, setGender] = useState("");
   const [formHeight, setFormHeight] = useState(0);
   const [isResultsOpen, setIsResultsOpen] = useState(false);
+  const { updateAnalysis } = useAnalysis();
 
   const formRef = useRef(null);
 
@@ -24,13 +26,106 @@ const FormPanel = () => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => {
+
+    try {
+      // Get form data
+      const formData = new FormData();
+      const fullName = document.getElementById("fullName").value;
+      const age = document.getElementById("age").value;
+      const height = document.getElementById("height").value;
+      const weight = document.getElementById("weight").value;
+      const waist = document.getElementById("waist").value;
+      const hip = document.getElementById("hip").value;
+
+      // Create user profile
+      const userProfile = {
+        fullName,
+        age: parseInt(age),
+        gender: gender,
+        measurements: {
+          height_cm: parseInt(height),
+          weight_kg: parseFloat(weight),
+          waist_cm: parseInt(waist),
+          hip_cm: parseInt(hip),
+        },
+      };
+
+      console.log("User Profile:", userProfile);
+
+      // Create a user ID (you might want to use a proper authentication system)
+      const userId = "user_" + Date.now();
+
+      // First, create/update user profile
+      const profileResponse = await fetch(
+        `http://localhost:5000/profile/${userId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(userProfile),
+          credentials: "include",
+          mode: "cors",
+        }
+      );
+
+      if (!profileResponse.ok) {
+        const errorData = await profileResponse.json();
+        throw new Error(
+          `Failed to create user profile: ${
+            errorData.error || profileResponse.statusText
+          }`
+        );
+      }
+
+      // If there are images, analyze them
+      if (images != null) {
+        const imageFormData = new FormData();
+        imageFormData.append("photo", images.file);
+
+        const analysisResponse = await fetch(
+          `http://localhost:5000/analyze-photo/${userId}`,
+          {
+            method: "POST",
+            body: imageFormData,
+            credentials: "include",
+            mode: "cors",
+          }
+        );
+
+        if (!analysisResponse.ok) {
+          const errorData = await analysisResponse.json();
+          throw new Error(
+            `Failed to analyze photo: ${
+              errorData.error || analysisResponse.statusText
+            }`
+          );
+        }
+
+        const analysisData = await analysisResponse.json();
+
+        // Update the AnalysisContext with the response data
+        console.log("Analysis data:", analysisData);
+        updateAnalysis(analysisData);
+        setIsLoading(false);
+        setIsResultsOpen(true);
+      } else {
+        // If no images, just show the profile
+        updateAnalysis(userProfile);
+        setIsLoading(false);
+        setIsResultsOpen(true);
+      }
+    } catch (error) {
+      console.error("Detailed error:", error);
       setIsLoading(false);
-      setIsResultsOpen(true);
-    }, 1500);
+      alert(`An error occurred: ${error.message}`);
+    }
+
+    setImages([]);
   };
 
   const handleCloseResults = () => {
@@ -43,13 +138,10 @@ const FormPanel = () => {
       file: f,
       url: URL.createObjectURL(f),
     }));
-    setImages((prev) => [...prev, ...newImgs]);
+    setImages(newImgs[0]);
   };
 
   const handleGenderChange = (e) => setGender(e.target.value);
-
-  const showOverlay = images.length > 3;
-  const previews = images.slice(0, 3);
 
   if (isLoading) return <LoadingScreen />;
 
@@ -121,21 +213,14 @@ const FormPanel = () => {
               onChange={handleImageUpload}
             />
 
-            {images.length > 0 && (
+            {images?.url && (
               <div className={styles.previewBox}>
-                {previews.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img.url}
-                    alt={`preview-${i}`}
-                    className={styles.previewImage}
-                  />
-                ))}
-                {showOverlay && (
-                  <div className={styles.previewOverlay}>
-                    +{images.length - 3}
-                  </div>
-                )}
+                <img
+                  key={images.url}
+                  src={images.url}
+                  alt="preview"
+                  className={styles.previewImage}
+                />
               </div>
             )}
           </div>

@@ -1,12 +1,11 @@
 .analysis-box-container {
-  flex: 3;
+  flex: 4;
   display: flex;
   justify-content: center;
   align-items: start;
   flex-wrap: wrap;
   gap: 16px;
   width: 100%;
-
   padding: 1rem;
 }
 
